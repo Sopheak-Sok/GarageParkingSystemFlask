@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+    <h2 class="my-4" style="color:#f1356d;">Owner Search Results</h2>
+    {% if owners %}
+        <table class="table table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Car ID</th>
+                    <th>Make</th>
+                    <th>Model</th>
+                    <th>Year</th>
+                    <th>Color</th>
+                    <th>License Plate</th>
+                    <th>Owner First Name</th>
+                    <th>Owner Last Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for owner in owners %}
+                    <tr>
+                        <td>{{ owner[0] }}</td>
+                        <td>{{ owner[1] }}</td>
+                        <td>{{ owner[2] }}</td>
+                        <td>{{ owner[3] }}</td>
+                        <td>{{ owner[4] }}</td>
+                        <td>{{ owner[5] }}</td>
+                        <td>{{ owner[6] }}</td>
+                        <td>{{ owner[7] }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No owners found with the given name.</p>
+    {% endif %}
+    <a href="{{ url_for('search_owner') }}" class="btn btn-primary">Back to Search</a>
+{% endblock %}

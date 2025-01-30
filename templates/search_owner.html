@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+    <h2 class="my-4" style="color:#f1356d;">Search Owner</h2>
+    <form action="{{ url_for('search_owner') }}" method="post">
+        <div class="form-group">
+            <label for="owner_name">Owner Name:</label>
+            <input type="text" class="form-control" name="owner_name" id="owner_name" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+{% endblock %}

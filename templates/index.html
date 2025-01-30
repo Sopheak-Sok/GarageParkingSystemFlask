@@ -1,0 +1,195 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="blog-preview">
+    <h2>Information List</h2>
+</div>
+
+<div id="accordion">
+    <div class="card">
+        <div class="card-header" id="headingOne">
+            <h5 class="mb-0">
+            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                Car List
+            </button>
+        </h5>
+    </div>
+    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+        <div class="card-body">
+            <div class="card card-body">
+                <h2 class="my-4">Car List</h2>
+                <table class="table table-striped">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>ID</th>
+                            <th>Owner ID</th>
+                            <th>Make</th>
+                            <th>Model</th>
+                            <th>Year</th>
+                            <th>Color</th>
+                            <th>License Plate</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for car in cars %}
+                            <tr>
+                                <td>{{ car[0] }}</td>
+                                <td>{{ car[1] }}</td>
+                                <td>{{ car[2] }}</td>
+                                <td>{{ car[3] }}</td>
+                                <td>{{ car[4] }}</td>
+                                <td>{{ car[5] }}</td>
+                                <td>{{ car[6] }}</td>
+                                <td>
+                                    <a href="{{ url_for('update_car', id=car[0]) }}" class="btn btn-warning btn-sm">Edit</a>
+                                    <a href="{{ url_for('delete_car', id=car[0]) }}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header" id="headingTwo">
+            <h5 class="mb-0">
+                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    Owner List
+                </button>
+            </h5>
+        </div>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+            <div class="card-body">
+                <div class="card card-body">
+                    <h2 class="my-4">Owner List</h2>
+                    <table class="table table-striped">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Owner ID</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Phone Number</th>
+                                <th>Email</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for owner in owners %}
+                                <tr>
+                                    <td>{{ owner[0] }}</td>
+                                    <td>{{ owner[1] }}</td>
+                                    <td>{{ owner[2] }}</td>
+                                    <td>{{ owner[3] }}</td>
+                                    <td>{{ owner[4] }}</td>
+                                    <td>
+                                        <a href="{{ url_for('update_owner', id=owner[0]) }}" class="btn btn-warning btn-sm">Edit</a>
+                                        <a href="{{ url_for('delete_owner', id=owner[0]) }}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Delete</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card"> 
+        <div class="card-header" id="headingThree"> 
+            <h5 class="mb-0"> 
+                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree"> 
+                    Slot Parking List 
+                </button> 
+            </h5> 
+        </div> 
+        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion"> 
+            <div class="card-body"> 
+                <div class="card card-body"> 
+                    <h2 class="my-4">Slot Parking List</h2> 
+                    <table class="table table-striped"> 
+                        <thead class="thead-dark"> 
+                            <tr> 
+                                <th>Slot ID</th> 
+                                <th>Slot</th>  
+                                <th>Car ID</th> 
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr> 
+                        </thead> 
+                        <tbody> 
+                            {% for slot in slots %} 
+                                <tr> 
+                                    <td>{{ slot[0] }}</td> 
+                                    <td>{{ slot[1] }}</td> 
+                                    <td>{{ slot[3] }}</td>
+                                    <td>
+                                        {% if slot[2] == 1 %}
+                                            <label style="color: grey;">Unavailable</label>
+                                        {% endif %}
+                                        {% if slot[2] == 0 %}
+                                            <label style="color: green; font-weight: bold;">Available</label>
+                                        {% endif %}
+                                    </td> 
+                                    <td>
+                                        {% if slot[2] == 1 %}
+                                            <a href="{{ url_for('check_out', id=slot[0]) }}" class="btn btn-danger btn-sm w-50">Check Out</a>
+                                        {% endif %}
+                                        {% if slot[2] == 0 %}
+                                            <a href="{{ url_for('add_car') }}" class="btn btn-danger btn-sm bg-success w-50">Check In</a>
+                                        {% endif %}
+                                    </td>
+                                    
+                                </tr> 
+                            {% endfor %} 
+                        </tbody> 
+                    </table> 
+                </div> 
+            </div> 
+        </div> 
+    </div> 
+
+    <div class="card"> 
+        <div class="card-header" id="headingFour"> 
+            <h5 class="mb-0"> 
+                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour"> 
+                    Transaction List 
+                </button> 
+            </h5> 
+        </div> 
+        <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion"> 
+            <div class="card-body"> 
+                <div class="card card-body"> 
+                    <h2 class="my-4">Transaction List</h2> 
+                    <table class="table table-striped"> 
+                        <thead class="thead-dark"> 
+                            <tr> 
+                                <th>Transaction ID</th> 
+                                <th>Car ID</th> 
+                                <th>Slot ID</th> 
+                                <th>Entry Time</th> 
+                                <th>Exit Time</th> 
+                                <th>Amount Paid</th> 
+                            </tr> 
+                        </thead> 
+                        <tbody> 
+                            {% for transaction in transactions %} 
+                                <tr> 
+                                    <td>{{ transaction[0] }}</td> 
+                                    <td>{{ transaction[1] }}</td> 
+                                    <td>{{ transaction[2] }}</td> 
+                                    <td>{{ transaction[3] }}</td> 
+                                    <td>{{ transaction[4] }}</td> 
+                                    <td>{{ transaction[5] }}</td> 
+                                </tr> 
+                            {% endfor %} 
+                        </tbody> 
+                    </table> 
+                </div> 
+            </div> 
+        </div> 
+    </div>
+</div>
+
+{% endblock %}

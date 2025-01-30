@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+    <h2 class="my-4">Update Parking Slot Information</h2>
+    <form action="{{ url_for('check_out', id=slot[0]) }}" method="post">
+        <div class="form-group">
+            <label for="parking_price">Parking Price:</label>
+            <input type="number" class="form-control" name="parking_price" id="parking_price"  required>
+        </div>   
+        <button type="submit" class="btn btn-primary">Submit Payment</button>
+    </form>
+{% endblock %}

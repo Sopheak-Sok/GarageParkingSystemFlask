@@ -1,0 +1,51 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+}
+
+.navbar-brand {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.container {
+    margin-top: 20px;
+}
+
+h1, h2 {
+    color: #333;
+}
+
+.alert {
+    margin-top: 20px;
+}
+
+form {
+    width: 100%;
+    margin: 20px 0;
+}
+
+form label {
+    margin: 10px 0 5px;
+}
+
+form button {
+    margin-top: 20px;
+}
+
+/* blog previews */ 
+.blog-preview {
+    padding: 10px 16px;
+    margin: 20px 0;
+    border-bottom: 1px solid #fafafa;
+}
+
+/* .blog-preview:hover {
+    box-shadow: 1px 3px 5px rgba(0,0,0,0.1);
+} */
+
+.blog-preview h2 {
+    font-size: 30px;
+    color: #f1356d;
+    margin-bottom: 8px;
+}
