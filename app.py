@@ -10,7 +10,7 @@ app.secret_key = "supersecret key"
 mysql_config = {
     'host': 'localhost',
     'user': 'root',
-    'password': '!(-1Kurama1-).!',
+    'password': '***********',
     'database': 'garageparkingdb'
 }
 
